@@ -1,0 +1,43 @@
+#!/bin/bash
+
+unset NOQACROWBARDOWNLOAD
+unset TESTHEAD
+unset hacloud
+###############################
+
+
+# SUSE Cloud 5 Gold Master with Updates and SUSE Enterprise Storage Enabled (CEPH).
+export cloudsource=GM5+up
+export libvirt_type=kvm
+export networkingplugin=openvswitch
+export nodenumber=3 # Number of nodes (Admin Node not counted)
+#export TESTHEAD=1 # Use Media from Devel:Cloud:Staging and add test update repositories
+#export want_sles12= # For cloud 5 its unset * Only Compute nodes.
+
+### Admin Node Processor and RAM configuration ###
+#export admin_node_memory=2097152 # Bytes (2GB default)
+#export adminvcpus=1 # Default 1 vcpu
+
+### Controller Node Processor and RAM configuration ###
+#export controller_node_memory=2097152 # Bytes (2GB Default)
+
+### Compute Node Processor and RAM configuration ###
+#export compute_node_memory=2097152 # Bytes (2GB Default)
+#export vcpus=1 # Default 1 vcpu
+
+#export cephvolumenumber=1 # By default 1. Extra HDD for Cinder volumes even without CEPH enabled.
+
+# For SUSE Cloud with CEPH (Disabled by default)
+export want_ceph=1 # Uncomment to enable CEPH
+
+# For HA Cloud (Disabled by default)
+#export hacloud=1 # Uncomment to enable HA Cloud
+# Define configuration for HA Clusters.
+#export clusterconfig="data=2:network=3:services=3" # For three node clusters.
+# Note: All other nodes (if nodenumber>3) will be treated as Compute Nodes.
+
+allocated_cloud=4  # Do not change this (for newbeez)
+
+. ../mkcloudrun ${allocated_cloud}
+
+exec ../../automation/scripts/mkcloud "$@"

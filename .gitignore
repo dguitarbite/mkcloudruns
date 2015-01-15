@@ -1,0 +1,4 @@
+*.*/
+mkcloud.*
+qa_crowbarsetup.sh
+*.log
