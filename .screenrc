@@ -1,0 +1,7 @@
+startup_message off
+setenv
+
+hardstatus on
+hardstatus alwayslastline
+
+caption always "%{WB}%0=%H%{kB} %?%-w%?%{bW}%n:%t%?(%u)%?%{kB}%?%+w%? %{WB}%=%c"

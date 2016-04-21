@@ -3,3 +3,8 @@ mkcloud.*
 qa_crowbarsetup.sh
 *.log
 .artifacts
+<<<<<<< HEAD
+=======
+pids/
+screenlog*
+>>>>>>> 6acf6db... Stub temp.

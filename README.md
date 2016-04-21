@@ -1,20 +1,20 @@
 MkCloud Runs
-------
+------------
 
 # Description
 
-Run multiple instances of mkcloud in parallel. I had a few months to
-think about the format for this repository. Since this repository is
-solely created to eliminate the boilerplate required for mkcloud.config,
-and make it simpler to run multiple mkclouds in parallel with the logic
-figured out, this should make it easier for developers to simply deploy
-the required cloud with most common variables as comments.
+Run multiple copies of various scenarios of SUSE OpenStack Cloud product
+using mkcloud ([automation repository](https://github.com/SUSE-Cloud/automation)).
 
-The different cloudruns are most common scenarios.
+This repository is basically a wrapper which automates the boilerplate required
+to start mkcloud with the right configuration settings. Even for non-beginners
+this boilerplate wrapper script should be really handy due to the overwhelming
+amount of configuration options and environment variables used by mkcloud :|.
 
-Inspiration
-> I'm just too lazy.
+- Inspiration:
+    > I'm just too lazy.
 
+<<<<<<< HEAD
 # Usage:
 
 Simply copy the template folder and create a new one with the given number.
@@ -24,6 +24,10 @@ or write me an email ...
 
 ``$ ./deployClouds``
 
+=======
+- The perfect world:
+    > We do not need these scripts!
+>>>>>>> 6acf6db... Stub temp.
 
 # Deploying SUSE CLoud
 
@@ -32,6 +36,7 @@ Follow these steps to deploy the required SUSE Cloud setup.
 ## Initial Setup
 
 * Clone the repository
+  * These wrappers would eventually be part of automation repository, so I am trying to serve both worlds here ... use your common sense ;).
 * Setup up libvirt, KVM,LVM as per the automation repo, follow (this link)[https://github.com/dguitarbite/automation/blob/master/docs/mkcloud.md]
 * Create a LVM drive either using dd or give it one partition from your disk
 drive.
@@ -113,9 +118,19 @@ To use mkcloud the following additional steps are needed:
 * Go to the required folder and run the script `*.mkcloud*`.
 * Ex.:
     ```
-    $cd DevelCloud5/
-    $sudo ./DevelCloud5.mkcloud1 plain
+    $ cd mkcloudconfig/
+    $ cp template user.cloud<ver>
+    $ ...
+    $ cd ..; sudo ./install_suse_cloud
     ```
+* Scripts are invoked in a screen sessions. The name of the screen session is taken from the name of your configuration file.
+* To monitor the given cloud deployment process join the screen session:
+    ```
+    $ screen -ls
+    $ screen -x <screen_name>
+    ```
+  To move around in the screen session use the command `<C-R>-a, <tab number>`.
+  **Note:** The screen session are mostly invoked as root user, try to use ``sudo screen`` or access as a root user.
 * Monitor the VMs via. virt-manager or virsh. Virt-manager should give you a GUI and easier to use for new users.
 * After the deployment access the dashboards:
   - Crowbar/Admin Dashboard:
@@ -132,9 +147,10 @@ To use mkcloud the following additional steps are needed:
   mkcloudrun file in this folder. Usually the formual is good to guess the
 required IP addresses.
 * Crowbar admin IP is at xxx.10.
-* Ex: For `*.mkcloud5` the ip for admin node is 192.168.60.10
+* Ex: For `cloud number 5` the ip for admin node is 192.168.60.10
 
 ##RoadMap
 
-* Add manual hostname entires to /etc/hosts for different cloud deployments.
-* Add cleanup functionality.
+* Add basic CLI to `install_suse_cloud`.
+* Modify the scripts based on others feedback and requirements.
+* Fix automation repository the right way so we do not need these scripts in the first place.

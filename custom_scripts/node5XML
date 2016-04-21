@@ -1,0 +1,95 @@
+<domain type='kvm'>
+  <name>c15-node5</name>
+  <uuid></uuid>
+  <memory unit='KiB'>6000000</memory>
+  <currentMemory unit='KiB'>6000000</currentMemory>
+  <vcpu placement='static'>2</vcpu>
+  <os>
+    <type arch='x86_64' machine='pc-i440fx-2.0'>hvm</type>
+    <smbios mode='sysinfo'/>
+  </os>
+  <sysinfo type='smbios'>
+    <entry name='product'>Weird-IndoGerman-Machine</entry>
+  </sysinfo>
+  <features>
+    <acpi/>
+    <apic/>
+    <pae/>
+  </features>
+  <cpu mode='custom' match='exact'>
+    <model fallback='allow'>Broadwell</model>
+    <feature policy='require' name='vmx'/>
+  </cpu>
+  <clock offset='utc'/>
+  <on_poweroff>preserve</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>restart</on_crash>
+  <devices>
+    <emulator>/usr/bin/qemu-system-x86_64</emulator>
+    <disk type='block' device='disk'>
+      <driver name='qemu' type='raw' cache='unsafe'/>
+      <source dev='/dev/cloud6/c15.node5'/>
+      <target dev='vda' bus='virtio'/>
+      <boot order='3'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
+    </disk>
+    <disk type='block' device='disk'>
+      <driver name='qemu' type='raw' cache='unsafe'/>
+      <source dev='/dev/cloud6/c15.node5-ceph1'/>
+      <target dev='vdb' bus='virtio'/>
+      <serial>c15-node5-ceph1</serial>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x08' function='0x0'/>
+    </disk>
+    <controller type='usb' index='0'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x2'/>
+    </controller>
+    <controller type='pci' index='0' model='pci-root'/>
+    <interface type='network'>
+      <mac address='52:54:77:77:77:05'/>
+      <source network='c15-admin'/>
+      <target dev='c15-5'/>
+      <model type='e1000'/>
+      <boot order='2'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+    </interface>
+    <interface type='network'>
+      <source network='c15-admin'/>
+      <model type='e1000'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
+    </interface>
+    <interface type='network'>
+      <source network='c15-admin'/>
+      <model type='e1000'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0'/>
+    </interface>
+    <interface type='network'>
+      <source network='c15-admin'/>
+      <model type='e1000'/>
+    </interface>
+    <interface type='network'>
+      <source network='c15-admin'/>
+      <model type='rtl8139'/>
+    </interface>
+    <interface type='network'>
+      <source network='c15-admin'/>
+      <model type='rtl8139'/>
+    </interface>
+    <serial type='pty'>
+      <target port='0'/>
+    </serial>
+    <console type='pty'>
+      <target type='serial' port='0'/>
+    </console>
+    <input type='mouse' bus='ps2'/>
+    <input type='keyboard' bus='ps2'/>
+    <graphics type='vnc' port='-1' autoport='yes'/>
+    <video>
+      <model type='cirrus' vram='16384' heads='1'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
+    </video>
+    <memballoon model='virtio'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
+    </memballoon>
+  </devices>
+</domain>
+
