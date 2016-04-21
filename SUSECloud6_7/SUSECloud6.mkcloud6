@@ -16,14 +16,14 @@ export nodenumber=5 # Number of nodes (Admin Node not counted)
 
 ### Admin Node Processor and RAM configuration ###
 #export admin_node_memory=2097152 # Bytes (2GB default)
-#export adminvcpus=1 # Default 1 vcpu
+export adminvcpus=1 # Default 1 vcpu
 
 ### Controller Node Processor and RAM configuration ###
-#export controller_node_memory=2097152 # Bytes (2GB Default)
+export controller_node_memory=6000000 # Bytes (2GB Default)
 
 ### Compute Node Processor and RAM configuration ###
-#export compute_node_memory=2097152 # Bytes (2GB Default)
-#export vcpus=1 # Default 1 vcpu
+export compute_node_memory=6000000 # Bytes (2GB Default)
+export vcpus=2 # Default 1 vcpu
 
 #export cephvolumenumber=1 # By default 1. Extra HDD for Cinder volumes even without CEPH enabled.
 
@@ -33,10 +33,10 @@ export nodenumber=5 # Number of nodes (Admin Node not counted)
 # For HA Cloud (Disabled by default)
 export hacloud=1 # Uncomment to enable HA Cloud
 # Define configuration for HA Clusters.
-#export clusterconfig="data=2:network=3:services=3" # For three node clusters.
+export clusterconfig="data=2:network=3:services=3" # For three node clusters.
 # Note: All other nodes (if nodenumber>3) will be treated as Compute Nodes.
 
-allocated_cloud=6
+allocated_cloud=7
 
 . ../mkcloudrun ${allocated_cloud}
 
