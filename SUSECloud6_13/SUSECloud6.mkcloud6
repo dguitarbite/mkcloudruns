@@ -6,13 +6,13 @@ unset hacloud
 ###############################
 
 
-# SUSE Cloud 5 Gold Master with Updates with High Availability.
-export cloudsource=GM5+up
+# SUSE Cloud Goldmaster 6 with released maintenance updates
+export cloudsource=GM6+up
 export libvirt_type=kvm
-export networkingplugin=openvswitch
-export nodenumber=3 # Number of nodes (Admin Node not counted)
+#export networkingplugin=openvswitch
+export nodenumber=5 # Number of nodes (Admin Node not counted)
 #export TESTHEAD=1 # Use Media from Devel:Cloud:Staging and add test update repositories
-#export want_sles12= # For cloud 5 its unset * Only Compute nodes.
+# Note: All nodes are SLE 12 by default. Cannot use SLE 11
 
 ### Admin Node Processor and RAM configuration ###
 #export admin_node_memory=2097152 # Bytes (2GB default)
@@ -30,13 +30,13 @@ export nodenumber=3 # Number of nodes (Admin Node not counted)
 # For SUSE Cloud with CEPH (Disabled by default)
 #export want_ceph=1 # Uncomment to enable CEPH
 
-# For HA Cloud (Enabled for this cloud)
+# For HA Cloud (Disabled by default)
 export hacloud=1 # Uncomment to enable HA Cloud
 # Define configuration for HA Clusters.
-export clusterconfig="data=2:network=3:services=3" # For three node clusters.
+#export clusterconfig="data=2:network=3:services=3" # For three node clusters.
 # Note: All other nodes (if nodenumber>3) will be treated as Compute Nodes.
 
-allocated_cloud=5  # Do not change this (for newbeez)
+allocated_cloud=6
 
 . ../mkcloudrun ${allocated_cloud}
 
