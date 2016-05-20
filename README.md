@@ -15,6 +15,15 @@ The different cloudruns are most common scenarios.
 Inspiration
 > I'm just too lazy.
 
+# Usage:
+
+Simply copy the template folder and create a new one with the given number.
+Check out the scripts, I will update the readme once I get more time for the same!
+Please contact me on IRC freenode on #openstack/#openstack-doc/#opensuse channels if in doubt
+or write me an email ...
+
+``$ ./deployClouds``
+
 
 # Deploying SUSE CLoud
 

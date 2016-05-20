@@ -1,0 +1,13 @@
+# Note: Required steps to run mkcloud. Checkout automation repository and run ``$ ./mkcloud`` to get the full list of steps
+commands="cleanup prepare setupadmin addupdaterepo runupdate prepareinstcrowbar instcrowbar setupnodes setup_aliases $@"
+currentdir=$(pwd)
+
+# Change the range based on the number of clouds required. This one is generating numbers from 1 - 15.
+clouds=`echo {6..7}`
+
+for i in $clouds; do
+    echo "Deploying cloud number $i"
+    screen -X -S $i bash -c "exit"
+    screen -d -m -S $i bash -c "cd $i; ../SUSECloud.mkcloud $i $commands; exec bash"
+    cd $currentdir
+done
