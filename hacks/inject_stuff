@@ -1,4 +1,0 @@
-for i in {1..15};
-do 
-  scp "$@" root@crowbar.c$((i)):/root/. ;
-done
